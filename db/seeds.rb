@@ -1,8 +1,13 @@
 require('buzzfeed_title_generator')
 require('httparty')
 
-Comment.delete_all
-Grumble.delete_all
+# destroy_all preferable, uses ActiveRecord callbacks (e.g. dependent destroy)
+Comment.destroy_all
+Grumble.destroy_all
+User.destroy_all
+
+User.create!(email: "bob@example.com", password: "pizzajammy")
+User.create!(email: "alice@example.com", password: "pizzajammy")
 
 names = %w(Jesse Adam Andy Robin Adrian Matt)
 
