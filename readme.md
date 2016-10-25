@@ -1,6 +1,6 @@
 # Welcome to the API for Grumblr
 
-Once setup, you can access your grumblr api at `http://locahost:3000`.
+Once setup, you can access your Grumblr api at `http://localhost:3000`.
 
 ## Setup
 
@@ -9,7 +9,7 @@ Once setup, you can access your grumblr api at `http://locahost:3000`.
   ```bash
   $ cd grumblr_rails_api
   $ bundle install
-  $ rake db:setup
+  $ rails db:drop db:create db:migrate db:seed
   ```
 
 2. Start your server
