@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+img {
+  width: 100%;
+}
+
+.grumble {
+  width: 70%;
+  margin: 50px 0;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+}
+
+.comment {
+  width: 70%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
