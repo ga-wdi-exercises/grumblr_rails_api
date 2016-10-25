@@ -1,0 +1,10 @@
+<h1>All The Grumbles</h1>
+
+<%= link_to "New Grumble", new_grumble_path %>
+
+<% @grumbles.each do |grumble| %>
+  <h2><%= link_to grumble.title, grumble_path(grumble) %></h2>
+  <h3>By: <%= grumble.authorName %></h3>
+  <%= image_tag grumble.photoUrl %>
+  <p><%= grumble.content %></p>
+<% end %>

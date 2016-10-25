@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,9 +21,8 @@ ActiveRecord::Schema.define(version: 20150824172941) do
     t.integer  "grumble_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["grumble_id"], name: "index_comments_on_grumble_id", using: :btree
   end
-
-  add_index "comments", ["grumble_id"], name: "index_comments_on_grumble_id", using: :btree
 
   create_table "grumbles", force: :cascade do |t|
     t.string   "authorName"

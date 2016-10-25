@@ -1,0 +1,11 @@
+<h1>Edit Comment</h1>
+
+<%= form_for @grumble do |f| %>
+  <%= f.label :authorName %>
+  <%= f.text_field :authorName %>
+
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+
+  <%= f.submit %>
+<% end %>

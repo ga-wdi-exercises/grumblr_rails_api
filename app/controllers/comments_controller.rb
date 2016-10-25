@@ -2,39 +2,45 @@ class CommentsController < ApplicationController
   def index
     @grumble = Grumble.find(params[:grumble_id])
     @comments = @grumble.comments.order(:created_at)
+  end
 
-    render json: @comments.to_json, status: :ok
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
+  def new
+    @grumble = Grumble.find(params[:grumble_id])
+    @comment = @grumble.comments.new
   end
 
   def create
     @grumble = Grumble.find(params[:grumble_id])
-    @comment = @grumble.comments.build(comment_params)
+    @comment = @grumble.comments.create!(comment_params)
+    redirect_to @grumble
+  end
 
-    if @comment.save
-      render json: @comment.to_json, status: :created
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+  def edit
+    @grumble = Grumble.find(params[:grumble_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @grumble = Grumble.find(params[:grumble_id])
     @comment = Comment.find(params[:id])
-    if @comment.update(comment_params)
-      render json: @comment.to_json, status: :ok
-    else
-      render json: @comment.errors, status: :unprocessable_entity
-    end
+    @comment.update!(comment_params)
+    redirect_to [@grumble, @comment]
   end
 
   def destroy
+    @grumble = Grumble.find(params[:grumble_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    render json: {message: "success"}, status: :ok
+    redirect_to @grumble
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:authorName, :content, :grumble_id)
-    end
+
+  def comment_params
+    params.require(:comment).permit(:authorName, :content, :grumble_id)
+  end
 end

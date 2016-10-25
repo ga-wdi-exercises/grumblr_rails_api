@@ -1,0 +1,17 @@
+<h1>Create Grumble</h1>
+
+<%= form_for @grumble do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :authorName %>
+  <%= f.text_field :authorName %>
+
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+
+  <%= f.label :photoUrl %>
+  <%= f.text_field :photoUrl %>
+
+  <%= f.submit %>
+<% end %>

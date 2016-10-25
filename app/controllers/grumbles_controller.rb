@@ -1,42 +1,40 @@
 class GrumblesController < ApplicationController
   def index
     @grumbles = Grumble.all.order(:created_at)
-
-    render json: @grumbles.to_json, status: :ok
   end
+
   def show
     @grumble = Grumble.find(params[:id])
-    render json: @grumble.to_json, status: :ok
+  end
+
+  def new
+    @grumble = Grumble.new
   end
 
   def create
-    @grumble = Grumble.new(grumble_params)
+    @grumble = Grumble.create!(grumble_params)
+    redirect_to @grumble
+  end
 
-    if @grumble.save
-      render json: @grumble.to_json, status: :created
-    else
-      render json: @grumble.errors, status: :unprocessable_entity
-    end
+  def edit
+    @grumble = Grumble.find(params[:id])
   end
 
   def update
     @grumble = Grumble.find(params[:id])
-    if @grumble.update(grumble_params)
-      render json: @grumble.to_json, status: :ok
-    else
-      render json: @grumble.errors, status: :unprocessable_entity
-    end
+    @grumble.update(grumble_params)
+    redirect_to @grumble
   end
 
   def destroy
     @grumble = Grumble.find(params[:id])
     @grumble.destroy
-    render json: {message: "success"}, status: :ok
+    redirect_to grumbles_path
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def grumble_params
-      params.require(:grumble).permit(:authorName, :content, :title, :photoUrl)
-    end
+
+  def grumble_params
+    params.require(:grumble).permit(:authorName, :content, :title, :photoUrl)
+  end
 end
