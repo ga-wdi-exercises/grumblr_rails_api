@@ -1,0 +1,6 @@
+<%= link_to "Return to Grumble", grumble_path(@grumble) %>
+
+<p><%= @comment.content %></p>
+<h4>By: <%= @comment.authorName %></h4>
+<%= link_to "Edit Comment", edit_grumble_comment_path(@grumble, @comment) %>
+<%= link_to "Delete Comment", grumble_comment_path(@grumble, @comment), method: :delete %>

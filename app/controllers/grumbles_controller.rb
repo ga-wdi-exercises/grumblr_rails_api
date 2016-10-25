@@ -1,10 +1,20 @@
 class GrumblesController < ApplicationController
   def index
-    @grumbles = Grumble.all.order(:created_at)
+    @grumbles = Grumble.all
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @grumbles }
+    end
   end
 
   def show
     @grumble = Grumble.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @grumble }
+    end
   end
 
   def new
@@ -13,10 +23,15 @@ class GrumblesController < ApplicationController
 
   def create
     @grumble = Grumble.new(grumble_params)
-    if @grumble.save!
-      redirect_to @grumble
-    else
-      render :new
+
+    respond_to do |format|
+      if @grumble.save!
+        format.html { redirect_to @grumble, notice: 'Grumble was successfully created.' }
+        format.json { render json: @grumble, status: :created, location: @grumble }
+      else
+        format.html { render :new }
+        format.json { render json: @grumble.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -26,8 +41,16 @@ class GrumblesController < ApplicationController
 
   def update
     @grumble = Grumble.find(params[:id])
-    @grumble.update(grumble_params)
-    redirect_to @grumble
+
+    respond_to do |format|
+      if @grumble.update!(grumble_params)
+        format.html { redirect_to @grumble, notice: 'Grumble was successfully updated.' }
+        format.json { render json: @grumble, location: @grumble }
+      else
+        format.html { render :new }
+        format.json { render json: @grumble.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
