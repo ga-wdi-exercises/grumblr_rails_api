@@ -1,0 +1,10 @@
+<h1>This Grumble's Comments</h1>
+
+<%= link_to "New Comment", new_grumble_comment_path(@grumble) %>
+
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <p><%= comment.content %></p>
+    <p><%= comment.authorName %></p>
+  </div>
+<% end %>
