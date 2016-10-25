@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @grumble = Grumble.find(params[:grumble_id])
     @comment = Comment.find(params[:id])
   end
 
