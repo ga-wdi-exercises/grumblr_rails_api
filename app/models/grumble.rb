@@ -1,6 +1,7 @@
 class Grumble < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   after_destroy :reseed_if_no_more_grumbles
+  validates :title, presence: true
 
   private
   def reseed_if_no_more_grumbles
