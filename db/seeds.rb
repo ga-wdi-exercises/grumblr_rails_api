@@ -4,7 +4,7 @@ require('httparty')
 Comment.delete_all
 Grumble.delete_all
 
-names = %w(Jesse Adam Andy Robin Adrian Matt)
+names = %w(Nayana Angel Andy Erik Adrian James)
 
 def advice
   JSON.parse(HTTParty.get("http://api.adviceslip.com/advice").body)["slip"]["advice"]
@@ -31,7 +31,7 @@ def comment
     "I've responded to this in my post about",
     "Didn't you know? The government is secretly controlled by"
   ]
-  message = HTTParty.get("http://www.ineedaprompt.com/api").parsed_response["english"]
+  message = HTTParty.get("http://www.ineedaprompt.com/api", verify: false).parsed_response["english"]
   puts message
   comments.sample + " " + message[0,1].downcase + message[1..-1]
 end
