@@ -18,7 +18,6 @@ def comment
   comments = [
     "That photo reminds me of the time I saw",
     "Your post would be better if it included",
-    "There is no God. There is only",
     "I disagree. I'd encourage you to think more broadly of",
     "This just goes to show your ignorance about",
     "Who wrote this? It sounds like it was written by",
