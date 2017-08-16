@@ -12,7 +12,12 @@ class GrumblesController < ApplicationController
   end
 
   def create
-    @grumble = Grumble.create(grumble_params)
+    @grumble = Grumble.new(grumble_params)
+    if @grumble.save!
+      redirect_to @grumble
+    else
+      render :new
+    end
   end
 
   def edit

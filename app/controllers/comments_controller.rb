@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
 
   def create
     @grumble = Grumble.find(params[:grumble_id])
-    @comment = @grumble.comments.create!(comment_params)
-    redirect_to @grumble
+    @comment = @grumble.comments.new(comment_params)
+    if @comment.save!
+      redirect_to @grumble, notice: 'Comment was successfully created.'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -28,8 +32,11 @@ class CommentsController < ApplicationController
   def update
     @grumble = Grumble.find(params[:grumble_id])
     @comment = Comment.find(params[:id])
-    @comment.update!(comment_params)
-    redirect_to [@grumble, @comment]
+    if @comment.update!(comment_params)
+      redirect_to [@grumble, @comment], notice: 'Comment was successfully updated.'
+    else
+      render :new
+    end
   end
 
   def destroy

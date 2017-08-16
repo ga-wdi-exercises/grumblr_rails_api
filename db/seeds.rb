@@ -4,7 +4,7 @@ require('httparty')
 Comment.delete_all
 Grumble.delete_all
 
-names = %w(Nayana Angel Andy Erik Adrian James)
+names = %w(John Andy Juan James Eric Ali)
 
 def advice
   JSON.parse(HTTParty.get("http://api.adviceslip.com/advice").body)["slip"]["advice"]
