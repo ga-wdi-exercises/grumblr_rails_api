@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
     @comment = @grumble.comments.new(comment_params)
 
     respond_to do |format|
-      if @comment.save!
+      if @comment.save
         format.html { redirect_to @grumble, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
-      if @comment.update!(comment_params)
+      if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { render json: @comment }
       else

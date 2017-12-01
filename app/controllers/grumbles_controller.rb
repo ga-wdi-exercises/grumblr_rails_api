@@ -25,7 +25,7 @@ class GrumblesController < ApplicationController
     @grumble = Grumble.new(grumble_params)
 
     respond_to do |format|
-      if @grumble.save!
+      if @grumble.save
         format.html { redirect_to @grumble, notice: 'Grumble was successfully created.' }
         format.json { render json: @grumble, status: :created, location: @grumble }
       else
@@ -43,7 +43,7 @@ class GrumblesController < ApplicationController
     @grumble = Grumble.find(params[:id])
 
     respond_to do |format|
-      if @grumble.update!(grumble_params)
+      if @grumble.update(grumble_params)
         format.html { redirect_to @grumble, notice: 'Grumble was successfully updated.' }
         format.json { render json: @grumble, location: @grumble }
       else
