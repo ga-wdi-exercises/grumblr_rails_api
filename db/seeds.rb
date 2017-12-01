@@ -31,7 +31,6 @@ def comment
     "Didn't you know? The government is secretly controlled by"
   ]
   message = HTTParty.get("http://www.ineedaprompt.com/api", verify: false).parsed_response["english"]
-  puts message
   comments.sample + " " + message[0,1].downcase + message[1..-1]
 end
 
