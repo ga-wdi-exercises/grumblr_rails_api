@@ -13,7 +13,7 @@ class GrumblesController < ApplicationController
 
   def create
     @grumble = Grumble.new(grumble_params)
-    if @grumble.save!
+    if @grumble.save
       redirect_to @grumble
     else
       render :new
@@ -26,8 +26,11 @@ class GrumblesController < ApplicationController
 
   def update
     @grumble = Grumble.find(params[:id])
-    @grumble.update(grumble_params)
-    redirect_to @grumble
+    if @grumble.update(grumble_params)
+      redirect_to @grumble
+    else
+      render :edit
+    end
   end
 
   def destroy
